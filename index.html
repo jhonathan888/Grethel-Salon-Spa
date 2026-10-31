@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Grethel Salón y Spa: barbería y spa para damas y caballeros. Cortes, barba, peinados, color, uñas y tratamientos." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0b0b0d" />
+  <meta name="keywords" content="barbería, spa, salón, cortes de cabello, uñas, tintes, peinados, Grethel Salón y Spa, Samuel" />
+  <title>Grethel Salón y Spa — Barbería & Spa</title>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BeautySalon",
+    "name": "Grethel Salón y Spa",
+    "description": "Barbería y spa para damas y caballeros con servicios de corte, barba, peinados, tintes, uñas y tratamientos.",
+    "telephone": "+51 935 487 390",
+    "url": "https://maps.app.goo.gl/QjNaxr37ZiKXJTW99",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lima",
+      "addressRegion": "Lima",
+      "addressCountry": "PE"
+    },
+    "employee": {
+      "@type": "Person",
+      "name": "Samuel",
+      "jobTitle": "Barbero"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Lima"
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b0b0d;
+      --bg-soft:#111216;
+      --paper:#efe8da;
+      --muted:#a8a49c;
+      --muted-2:#7b786f;
+      --line:#2a2a31;
+      --gold:#d4ab67;
+      --rose:#b86b7f;
+      --accent:#c52a3a;
+      --max:1380px;
+      --shadow:0 25px 80px rgba(0,0,0,.35);
+      --radius:22px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--paper);
+      font-family:Arial,Helvetica,sans-serif;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    button,input,textarea,select{font:inherit}
+    .container{width:min(var(--max),calc(100% - 56px));margin:auto}
+    .noise{
+      position:fixed;inset:0;pointer-events:none;opacity:.05;z-index:999;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.85'/%3E%3C/svg%3E");
+    }
+
+    .site-alert{
+      position:fixed;top:0;left:0;right:0;z-index:120;
+      background:linear-gradient(90deg,var(--accent),#7a2145);
+      color:#fff;border-bottom:1px solid rgba(255,255,255,.14);
+      font-size:10px;letter-spacing:1.15px;text-transform:uppercase;
+    }
+    .site-alert-inner{
+      min-height:34px;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px 0;
+    }
+
+    header{
+      position:fixed;top:34px;left:0;right:0;z-index:100;
+      background:linear-gradient(to bottom,rgba(11,11,13,.92),rgba(11,11,13,.45),transparent);
+      backdrop-filter:blur(10px);
+      padding:20px 0;
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:26px}
+    .logo{font-weight:900;font-size:28px;line-height:.84;letter-spacing:-1.8px}
+    .logo small{display:block;font-size:8px;letter-spacing:2px;margin-top:7px;color:#c8c1b5}
+    nav{display:flex;gap:28px;font-size:11px;letter-spacing:1px;text-transform:uppercase}
+    nav a{opacity:.88;transition:.25s}
+    nav a:hover{opacity:1;color:var(--gold)}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:12px;
+      border:1px solid #5b5b62;padding:15px 22px;border-radius:999px;
+      text-transform:uppercase;font-size:11px;letter-spacing:1px;transition:.25s;
+      background:transparent;color:var(--paper);cursor:pointer;
+    }
+    .btn:hover{background:var(--paper);color:#111;border-color:var(--paper)}
+    .btn.primary{background:var(--gold);border-color:var(--gold);color:#111;font-weight:700}
+    .btn.primary:hover{background:#edd0a1;border-color:#edd0a1}
+    .btn.outline-gold{border-color:rgba(212,171,103,.55);color:var(--paper)}
+    .menu-toggle{display:none;border:1px solid #555;background:#0b0b0d;color:var(--paper);padding:10px 12px;border-radius:10px;cursor:pointer}
+
+    .hero{
+      min-height:100svh;position:relative;display:flex;align-items:flex-end;
+      padding:150px 0 70px;overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:
+        linear-gradient(90deg,rgba(11,11,13,.96) 2%,rgba(11,11,13,.76) 34%,rgba(11,11,13,.24) 58%,rgba(11,11,13,.82) 100%),
+        linear-gradient(0deg,rgba(11,11,13,.98) 3%,rgba(11,11,13,.22) 48%,rgba(11,11,13,.68) 100%),
+        url("img/samuel-hero.webp");
+      background-size:cover;
+      background-position:center 20%;
+      filter:saturate(1.03) contrast(1.02);
+      transform:scale(1.02);
+    }
+    .hero-word{
+      position:absolute;top:126px;left:50%;transform:translateX(-50%);
+      font-size:clamp(62px,14vw,220px);font-weight:900;letter-spacing:-.09em;
+      line-height:.8;color:rgba(239,232,218,.16);white-space:nowrap;text-transform:uppercase;
+      user-select:none;z-index:1;
+    }
+    .hero-content{
+      position:relative;z-index:2;
+      width:calc(100% - 64px);
+      max-width:none;
+      margin-inline:auto;
+      display:grid;
+      grid-template-columns:minmax(0,420px) minmax(260px,320px);
+      justify-content:space-between;
+      column-gap:clamp(50px,7vw,160px);
+      align-items:end;
+    }
+    .hero-content > div:first-child{min-width:0}
+    .hero-side{min-width:0}
+    .kicker{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+    h1{font-size:clamp(42px,4.2vw,70px);line-height:.92;letter-spacing:-.06em;text-transform:uppercase;max-width:780px}
+    .hero-copy{max-width:560px;color:#d1c8bc;line-height:1.68;font-size:15px;margin:26px 0 28px}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:12px}
+    .address{font-family:monospace;color:#c7bdaa;font-size:11px;letter-spacing:.5px;margin-top:20px}
+    .hero-side{border-left:1px solid rgba(255,255,255,.2);padding-left:28px}
+    .hero-side h3{font-size:12px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:18px}
+    .hero-side li{list-style:none;border-bottom:1px solid #303038;padding:13px 0;font-size:12px;text-transform:uppercase;letter-spacing:.7px;display:flex;justify-content:space-between;gap:10px}
+    .hero-side li span{color:#a8a39a;margin-left:auto;text-align:right;max-width:55%;overflow-wrap:break-word}
+
+    section{padding:110px 0;border-top:1px solid var(--line)}
+    .section-head{display:flex;justify-content:space-between;gap:50px;align-items:flex-end;margin-bottom:54px}
+    .eyebrow{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:14px}
+    .display{font-size:clamp(52px,10vw,132px);font-weight:900;line-height:.8;letter-spacing:-.08em;text-transform:uppercase}
+    .lead{max-width:470px;color:var(--muted);line-height:1.7;font-size:14px}
+
+    .about-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:60px;align-items:start}
+    .about-text{font-size:clamp(26px,3vw,42px);line-height:1.02;letter-spacing:-.04em;text-transform:uppercase}
+    .about-text strong{color:var(--gold)}
+    .about-copy{display:grid;gap:18px;color:var(--muted);line-height:1.8;font-size:14px}
+    .pill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:36px}
+    .pill{padding:18px;border:1px solid #2e2e34;border-radius:18px;background:linear-gradient(180deg,#111318,#0c0d10)}
+    .pill b{display:block;font-size:13px;text-transform:uppercase;margin-bottom:7px;color:var(--paper)}
+    .pill p{color:var(--muted-2);font-size:12px;line-height:1.5}
+
+    .dual-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .dual-card{
+      border:1px solid #2e2e34;border-radius:26px;overflow:hidden;position:relative;min-height:430px;
+      background:#121319;box-shadow:var(--shadow)
+    }
+    .dual-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02),rgba(0,0,0,.78) 74%);z-index:1}
+    .dual-card .visual{position:absolute;inset:0;background-size:cover;background-position:center}
+    .dual-card .content{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:flex-end;height:100%;padding:28px}
+    .tag{display:block;padding:0;border:0;border-radius:0;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:16px;background:none;color:var(--gold);backdrop-filter:none}
+    .dual-card h3{font-size:34px;line-height:.94;letter-spacing:-.04em;text-transform:uppercase;margin-bottom:10px}
+    .dual-card p{max-width:460px;color:#d7d0c6;line-height:1.7;font-size:14px}
+
+    .price-wrap{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+    .price-card{border:1px solid #2f2f36;border-radius:24px;padding:28px;background:linear-gradient(180deg,#111216,#0b0b0d)}
+    .price-card h3{font-size:26px;text-transform:uppercase;letter-spacing:-.03em;margin-bottom:12px}
+    .price-card > p{color:var(--muted);font-size:13px;line-height:1.65;margin-bottom:18px}
+    .price-list{display:grid;gap:10px}
+    .price-item{display:grid;grid-template-columns:1fr auto;gap:16px;padding:13px 0;border-bottom:1px solid #23242a}
+    .price-item:last-child{border-bottom:0}
+    .price-item b{font-size:14px;text-transform:uppercase;letter-spacing:.4px}
+    .price-item span{color:var(--gold);font-weight:700}
+    .price-note{margin-top:14px;color:var(--muted-2);font-size:12px;line-height:1.6}
+
+    .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:28px}
+    .tab-btn{
+      border:1px solid #383840;background:transparent;color:var(--paper);
+      padding:12px 16px;border-radius:999px;text-transform:uppercase;font-size:11px;letter-spacing:1px;cursor:pointer;transition:.25s;
+    }
+    .tab-btn.active,.tab-btn:hover{background:var(--paper);color:#111;border-color:var(--paper)}
+
+    .look-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .look-card{
+      border:1px solid #2a2b31;border-radius:22px;overflow:hidden;background:#121318;transition:.28s;
+      display:flex;flex-direction:column;
+    }
+    .look-card:hover{transform:translateY(-4px);border-color:#5b5b62}
+    .look-card[hidden]{display:none}
+    .look-photo{aspect-ratio:4/5;background-size:cover;background-position:center;position:relative}
+    .look-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.5))}
+    .look-body{padding:18px}
+    .look-type{color:var(--gold);font-size:10px;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:10px}
+    .look-card h4{font-size:18px;text-transform:uppercase;letter-spacing:-.03em;line-height:1.05;margin-bottom:9px}
+    .look-card p{color:var(--muted);font-size:12px;line-height:1.6}
+    .look-price{display:inline-flex;align-items:center;gap:7px;width:max-content;margin:0 0 12px;padding:8px 13px;border:1px solid rgba(212,171,103,.5);border-radius:999px;background:linear-gradient(120deg,rgba(212,171,103,.18),rgba(212,171,103,.05));color:#f5c776;font-size:17px;font-weight:900;letter-spacing:.2px;box-shadow:0 2px 20px rgba(212,171,103,.07)}
+
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .step{padding:24px;border:1px solid #2e2f36;border-radius:22px;background:linear-gradient(180deg,#101116,#0d0e12)}
+    .step span{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:50%;background:rgba(212,171,103,.12);border:1px solid rgba(212,171,103,.45);color:var(--gold);font-weight:800;margin-bottom:14px}
+    .step b{display:block;font-size:14px;text-transform:uppercase;margin-bottom:10px}
+    .step p{color:var(--muted);font-size:12px;line-height:1.65}
+
+    .review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .review-card{border:1px solid #2c2c32;padding:26px;border-radius:24px;background:linear-gradient(180deg,#101115,#0b0b0d);min-height:240px;display:flex;flex-direction:column;justify-content:space-between}
+    .stars{color:var(--gold);letter-spacing:2px;font-size:12px;margin-bottom:18px}
+    .review-card blockquote{font-size:18px;line-height:1.4;letter-spacing:-.02em}
+    .review-card footer{margin-top:22px;color:var(--muted-2);font-size:11px;line-height:1.6}
+    .review-card footer b{display:block;color:var(--paper);font-size:12px;margin-bottom:5px}
+
+    .contact-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:18px}
+    .contact-card,.contact-form{border:1px solid #2e2e35;border-radius:26px;padding:30px;background:linear-gradient(180deg,#111216,#0b0b0d)}
+    .contact-card{display:flex;flex-direction:column}
+    .contact-whatsapp{width:100%;margin-top:24px;min-height:48px;text-align:center}
+    .contact-map{border:1px solid #2e2e35;border-radius:26px;overflow:hidden;background:#111216;min-height:360px;position:relative}
+    .contact-map{display:flex;flex-direction:column;scroll-margin-top:120px}
+    .map-heading{color:#e23e50;font-size:12px;font-weight:700;line-height:1.4;letter-spacing:2px;padding:20px 26px 16px;text-transform:uppercase}
+    .contact-map iframe{display:block;width:100%;height:100%;min-height:320px;flex:1;border:0}
+    @media(min-width:851px) and (max-width:1100px){
+      .hero-content{width:calc(100% - 64px)}
+    }
+    @media(max-width:850px){.contact-map{min-height:330px}.contact-map iframe{min-height:330px}}
+    .contact-list{display:grid;gap:18px;margin-top:22px}
+    .contact-item span{display:block;color:var(--gold);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px}
+    .contact-item p,.contact-item a{color:#d2cbc0;font-size:15px;line-height:1.6}
+    form{display:grid;gap:12px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    input,select,textarea{width:100%;background:#111217;border:1px solid #2d2f36;color:#fff;padding:15px 16px;border-radius:14px;outline:none;font-size:13px}
+    input:focus,select:focus,textarea:focus{border-color:#847154}
+    textarea{min-height:150px;resize:vertical}
+    .small-help{color:var(--muted-2);font-size:11px;line-height:1.5}
+
+    .location-grid{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px}
+    .location-card,.map-wrap{border:1px solid #2e2e35;border-radius:26px;overflow:hidden;background:linear-gradient(180deg,#111216,#0b0b0d)}
+    .location-card{padding:30px}
+    .map-frame{width:100%;height:100%}
+    .map-frame iframe{display:block;width:100%;min-height:420px;border:0}
+    .map-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+
+    footer.site-footer{border-top:1px solid var(--line);padding:28px 0;color:#817d74;font-size:11px;letter-spacing:.7px}
+    .footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}
+    .footer-actions{display:flex;flex-wrap:wrap;gap:10px}
+
+    @media(max-width:1100px){
+      .look-grid{grid-template-columns:repeat(3,1fr)}
+      .pill-grid,.steps{grid-template-columns:repeat(2,1fr)}
+      .hero-content{grid-template-columns:1fr}
+      .hero-side{display:none}
+      .contact-grid,.location-grid,.about-grid,.price-wrap,.dual-cards{grid-template-columns:1fr}
+    }
+    @media(max-width:850px){
+      .container{width:min(var(--max),calc(100% - 34px))}
+      header{top:34px}
+      nav{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:#0b0b0d;flex-direction:column;justify-content:center;align-items:center;gap:0;padding:120px 36px 70px;z-index:160}
+      nav.is-open{display:flex}
+      nav a{font-size:17px;padding:18px 0;border-bottom:1px solid #23242a;width:min(100%,520px);text-align:center;opacity:1}
+      nav a:first-child{border-top:1px solid #23242a}
+      .desktop-btn{display:none}
+      .menu-toggle{display:inline-flex}
+      .hero{padding-top:145px;min-height:auto;padding-bottom:56px}
+      .hero-content{width:calc(100% - 48px)}
+      .hero-word{top:160px;font-size:23vw}
+      h1{font-size:clamp(34px,12vw,56px)}
+      section{padding:82px 0}
+      .section-head{display:block}
+      .lead{margin-top:24px}
+      .look-grid,.review-grid{grid-template-columns:1fr}
+      .pill-grid,.steps,.form-grid{grid-template-columns:1fr}
+      .footer-row{flex-direction:column;align-items:flex-start}
+    }
+
+    /* Carrusel de imágenes de Grethel: sin dependencias externas */
+    .carousel-heading{font-size:clamp(30px,4.5vw,62px);text-transform:uppercase;line-height:1.04;letter-spacing:-.055em}
+    .grethel-carousel{position:relative;overflow:hidden;border-radius:24px;border:1px solid #37343a;background:#141318;min-height:480px}
+    .carousel-track{position:relative;width:100%;height:clamp(410px,48vw,620px)}
+    .carousel-slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .65s ease,visibility .65s ease;pointer-events:none}
+    .carousel-slide.is-active{opacity:1;visibility:visible;pointer-events:auto}
+    .carousel-slide img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+    .carousel-slide:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,8,10,.86),rgba(8,8,10,.1) 83%),linear-gradient(0deg,rgba(8,8,10,.72),transparent 70%);pointer-events:none}
+    .carousel-overlay{position:absolute;z-index:2;left:clamp(26px,6vw,86px);bottom:clamp(70px,8vw,100px);max-width:min(600px,75%)}
+    .carousel-overlay span{color:var(--gold);font-size:11px;letter-spacing:2px;text-transform:uppercase}
+    .carousel-overlay h3{font-size:clamp(36px,6vw,80px);text-transform:uppercase;letter-spacing:-.065em;line-height:.97;margin:15px 0}
+    .carousel-overlay p{font-size:15px;line-height:1.6;color:#e5ded2;margin-bottom:22px}
+    .carousel-arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:46px;height:46px;border:1px solid #ffffff70;border-radius:50%;background:#0b0b0d70;color:#fff;cursor:pointer;font-size:22px;transition:.2s}
+    .carousel-arrow:hover{background:var(--gold);color:#111}
+    .carousel-arrow.previous{left:13px}.carousel-arrow.next{right:13px}
+    .carousel-dots{position:absolute;z-index:4;bottom:24px;left:0;right:0;display:flex;justify-content:center;gap:10px}
+    .carousel-dots button{border:0;border-radius:50%;background:#ffffff80;width:9px;height:9px;cursor:pointer;transition:.2s;padding:0}
+    .carousel-dots button.is-active{background:var(--gold);width:31px;border-radius:999px}
+    @media(max-width:650px){.carousel-track{height:440px}.carousel-overlay{left:26px;right:24px;max-width:calc(100% - 60px);bottom:64px}.carousel-overlay h3{font-size:40px}.carousel-arrow{width:34px;height:34px;font-size:16px}.carousel-arrow.previous{left:5px}.carousel-arrow.next{right:5px}.carousel-overlay .btn{padding:12px 16px}}
+    @media(prefers-reduced-motion:reduce){.carousel-slide{transition:none}}
+
+  
+    /* Estilo Minimalista moderno: tipografía compacta y legible */
+    #contacto .contact-item span{
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:10px;
+      font-weight:600;
+      letter-spacing:1.6px;
+      line-height:1.5;
+      color:#d8af6b;
+      margin-bottom:6px;
+    }
+    #contacto .contact-item p,
+    #contacto .contact-item a:not(.btn){
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:14px;
+      font-weight:400;
+      letter-spacing:0;
+      line-height:1.65;
+      color:#e5dfd4;
+    }
+    #contacto .contact-item a:not(.btn){
+      text-decoration-color:transparent;
+      transition:color .2s ease,text-decoration-color .2s ease;
+    }
+    #contacto .contact-item a:not(.btn):hover{
+      color:#dfbb80;
+      text-decoration:underline;
+      text-decoration-color:#dfbb80;
+      text-underline-offset:4px;
+    }
+    #contacto .contact-list{gap:18px}
+    #contacto .contact-card h3{
+      font-family:Arial,Helvetica,sans-serif;
+      font-weight:800;
+      letter-spacing:-.7px;
+    }
+    #contacto .section-head .lead{
+      font-family:Arial,Helvetica,sans-serif;
+      font-size:14px;
+      font-weight:400;
+      letter-spacing:0;
+      line-height:1.7;
+      color:#d7d1c9;
+    }
+    @media(max-width:850px){
+      #contacto .section-head .lead{font-size:13px;line-height:1.7}
+    }
+
+</style>
+</head>
+<body>
+  <div class="noise"></div>
+
+  <div class="site-alert">
+    <div class="container site-alert-inner">Grethel Salón y Spa · Barbería y spa para damas y caballeros · Reserva por WhatsApp: 935 487 390</div>
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a href="#inicio" class="logo">GRETHEL <small>SALÓN · SPA · BARBERÍA</small></a>
+
+      <nav id="mainNav" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#categorias">Galería</a>
+        <a href="#estilos">Estilos</a>
+        <a href="#contacto">Contacto</a>
+        <a href="#ubicacion">Ubicación</a>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <a class="btn primary desktop-btn" href="https://wa.me/51935487390?text=Hola%20Grethel%20Sal%C3%B3n%20y%20Spa%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener">Reserva tu cita →</a>
+        <button type="button" class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-word">GRETHEL</div>
+
+    <div class="container hero-content">
+      <div>
+        <h1>BARBERÍA<br>&amp; SPA</h1>
+        <p class="hero-copy">
+          Grethel Salón y Spa reúne <strong>barbería</strong> y <strong>spa / salón de belleza</strong> en una sola experiencia. 
+          Si buscas un look masculino preciso, Samuel te atiende con cortes, fades, barba y perfilado. 
+          Si vienes por un cambio de imagen, peinado, color, manicure o un servicio de cuidado personal, también encontrarás una sección pensada para ti.
+        </p>
+        <div class="hero-actions">
+          <a class="btn primary" href="https://wa.me/51935487390?text=Hola%20Grethel%20Sal%C3%B3n%20y%20Spa%2C%20quiero%20reservar%20una%20cita." target="_blank" rel="noopener">Escríbenos por WhatsApp →</a>
+          <a class="btn outline-gold" href="#estilos">Ver estilos disponibles</a>
+        </div>
+        <div class="address">Ubicación: <a href="https://maps.app.goo.gl/QjNaxr37ZiKXJTW99" target="_blank" rel="noopener">Ver local en Google Maps</a></div>
+      </div>
+
+      <aside class="hero-side">
+        <h3>Información rápida</h3>
+        <ul>
+          <li>Nombre del local <span>Grethel Salón y Spa</span></li>
+          <li>Barbero principal <span>Samuel</span></li>
+          <li>Atención <span>Damas y caballeros</span></li>
+          <li>WhatsApp <span>935 487 390</span></li>
+          <li>Servicios <span>Barbería · Spa · Uñas · Color</span></li>
+          <li>Horario <span>Lun. a sáb. · 9:00 AM a 10:00 PM</span></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section id="nosotros">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Quiénes somos</div>
+          <div class="display">Belleza<br>con estilo</div>
+        </div>
+        <p class="lead">
+          Esta página fue adaptada para mostrar claramente dos mundos dentro del mismo local: la <strong>barbería</strong> para quienes desean un corte limpio y moderno, y el <strong>spa / salón</strong> para quienes buscan peinados, color, uñas y bienestar.
+        </p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text">
+          Un espacio pensado para que <strong>cada cliente</strong> encuentre su estilo ideal, desde un fade impecable hasta un look de spa completo.
+        </div>
+        <div class="about-copy">
+          <p>La propuesta de Grethel Salón y Spa está diseñada para inspirar confianza visual desde el primer momento. La página separa categorías, ordena servicios y presenta ejemplos de looks para que cada persona pueda elegir con mayor seguridad lo que desea.</p>
+          <p>Samuel lidera la parte de barbería con cortes modernos, degradados, perfilado de barba y acabados premium. La zona de spa muestra peinados, tintes, manicure, pedicure y otros servicios que pueden interesar a una clienta o a cualquier persona que busque cuidado personal.</p>
+          <p>Los precios que ves en esta versión son referenciales e inventados por ahora, para que luego puedas editarlos con los montos reales.</p>
+        </div>
+      </div>
+
+      <div class="pill-grid">
+        <div class="pill"><b>Barbería premium</b><p>Cortes, fades, perfilado, barba y acabados definidos.</p></div>
+        <div class="pill"><b>Spa & salón</b><p>Peinados, tintes, alisados, manicure, pedicure y más.</p></div>
+        <div class="pill"><b>Atención visual</b><p>Catálogo de estilos para elegir el look antes de atenderse.</p></div>
+        <div class="pill"><b>Reserva directa</b><p>Botones rápidos para escribir por WhatsApp sin carrito ni pagos.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="categorias" class="carousel-section" aria-label="Galería de barbería y spa">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Grethel Salón y Spa</div>
+          <h2 class="carousel-heading">Inspírate con nuestros estilos</h2>
+        </div>
+        <p class="lead">Descubre cortes de barbería, peinados, color y cuidados de spa. Desliza las imágenes para encontrar lo que más te guste.</p>
+      </div>
+      <div class="grethel-carousel" id="grethelCarousel" aria-roledescription="carrusel" aria-label="Servicios destacados">
+        <div class="carousel-track">
+          <article class="carousel-slide is-active" aria-hidden="false">
+            <img src="img/1.png" alt="Inspiración para cortes modernos de barbería" loading="lazy">
+            <div class="carousel-overlay"><span>01 / BARBERÍA</span><h3>Tu próximo corte</h3><p>Degradados, texturas y acabados modernos.</p><a href="#estilos" class="btn primary">Explorar estilos</a></div>
+          </article>
+          <article class="carousel-slide" aria-hidden="true">
+            <img src="img/2.png" alt="Inspiración de peinados para salón" loading="lazy">
+            <div class="carousel-overlay"><span>02 / SALÓN</span><h3>Peinados con estilo</h3><p>Opciones para el día a día y ocasiones especiales.</p><a href="#estilos" class="btn primary">Explorar estilos</a></div>
+          </article>
+          <article class="carousel-slide" aria-hidden="true">
+            <img src="img/3.png" alt="Inspiración de coloración y balayage" loading="lazy">
+            <div class="carousel-overlay"><span>03 / COLOR</span><h3>Color que destaca</h3><p>Tintes y efectos de iluminación para un cambio de look.</p><a href="#estilos" class="btn primary">Explorar estilos</a></div>
+          </article>
+          <article class="carousel-slide" aria-hidden="true">
+            <img src="img/4.png" alt="Diseño de uñas francesas" loading="lazy">
+            <div class="carousel-overlay"><span>04 / UÑAS</span><h3>Detalles que enamoran</h3><p>Manicure y diseños para expresar tu personalidad.</p><a href="#estilos" class="btn primary">Explorar estilos</a></div>
+          </article>
+          <article class="carousel-slide" aria-hidden="true">
+            <img src="img/5.png" alt="Tratamiento facial de spa" loading="lazy">
+            <div class="carousel-overlay"><span>05 / SPA</span><h3>Un momento para ti</h3><p>Cuidado personal y tratamientos de bienestar.</p><a href="#estilos" class="btn primary">Explorar estilos</a></div>
+          </article>
+        </div>
+        <button type="button" class="carousel-arrow previous" aria-label="Imagen anterior">&#10094;</button>
+        <button type="button" class="carousel-arrow next" aria-label="Imagen siguiente">&#10095;</button>
+        <div class="carousel-dots" aria-label="Elegir imagen">
+          <button type="button" class="is-active" aria-label="Ir a imagen 1" aria-current="true"></button>
+          <button type="button" aria-label="Ir a imagen 2"></button>
+          <button type="button" aria-label="Ir a imagen 3"></button>
+          <button type="button" aria-label="Ir a imagen 4"></button>
+          <button type="button" aria-label="Ir a imagen 5"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="estilos">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Catálogo visual</div>
+          <div class="display">Elige tu look</div>
+        </div>
+        <p class="lead">Explora cortes, colores, peinados y uñas para inspirar tu próxima visita. Las imágenes son referencias visuales ilustrativas; consulta la disponibilidad de cada técnica.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Filtrar estilos">
+        <button class="tab-btn active" data-filter="all" type="button">Todos</button>
+        <button class="tab-btn" data-filter="barberia" type="button">Barbería</button>
+        <button class="tab-btn" data-filter="spa" type="button">Spa / Salón</button>
+      </div>
+
+      <div class="look-grid">
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/FadeClasico.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Fade Clásico</h4><span class="look-price">S/ 35</span><p>Degradado limpio y estructura equilibrada, ideal para un look fresco de todos los días.</p></div>
+        </article>
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/LowFadeUrbano.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Low Fade Urbano</h4><span class="look-price">S/ 35</span><p>Laterales bajos con transición suave y acabado moderno para estilo casual o street.</p></div>
+        </article>
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/TaperEjecutivo.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Taper Ejecutivo</h4><span class="look-price">S/ 30</span><p>Una propuesta prolija y elegante para oficina, reuniones o imagen profesional.</p></div>
+        </article>
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/CropTexturizado.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Crop Texturizado</h4><span class="look-price">S/ 32</span><p>Textura en la parte superior con frente marcada y laterales compactos.</p></div>
+        </article>
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/PompadourModerno.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Pompadour Moderno</h4><span class="look-price">S/ 38</span><p>Volumen superior, presencia fuerte y laterales pulidos para un estilo con personalidad.</p></div>
+        </article>
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/BuzzPremium.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Buzz Premium</h4><span class="look-price">S/ 25</span><p>Corte corto y preciso, ideal para quienes prefieren practicidad con presencia.</p></div>
+        </article>
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/FadeConDiseño.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Fade con Diseño</h4><span class="look-price">S/ 40</span><p>Líneas artísticas y contraste marcado para un look juvenil y llamativo.</p></div>
+        </article>
+        <article class="look-card" data-category="barberia">
+          <div class="look-photo" style="background-image:url('img/BarbaPerfiladaGold.png')"></div>
+          <div class="look-body"><div class="look-type">Barbería</div><h4>Barba Perfilada Gold</h4><span class="look-price">S/ 18</span><p>Definición de barba, contornos limpios y acabado ordenado de alta presencia.</p></div>
+        </article>
+
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/BalayageCarameloGlow.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Balayage Caramelo Glow</h4><span class="look-price">S/ 140</span><p>Iluminación cálida con efecto natural, perfecta para aportar luz y movimiento.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/BobLisoEspejo.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Bob Liso Espejo</h4><span class="look-price">S/ 40</span><p>Corte recto y pulido con brillo visible para una imagen sofisticada y moderna.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/OndasGlamNoche.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Ondas Glam Noche</h4><span class="look-price">S/ 50</span><p>Peinado con ondas definidas y elegantes para eventos, sesiones o celebraciones.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/CobrizoSunset.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Cobrizo Sunset</h4><span class="look-price">S/ 95</span><p>Tinte de inspiración cálida con acabado vibrante y femenino.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/FrenchNudeChic.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>French Nude Chic</h4><span class="look-price">S/ 30</span><p>Manicure delicado con estilo limpio y elegante para uso diario o formal.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/CatEyeGloss.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Cat Eye Gloss</h4><span class="look-price">S/ 55</span><p>Diseño de uñas con reflejo magnético y acabado brillante de tendencia.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/LisoSilkTherapy.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Liso Silk Therapy</h4><span class="look-price">S/ 60</span><p>Cabello suave, alineado y con apariencia disciplinada para una imagen pulida.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/PedicureRelaxSpa.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Pedicure Relax Spa</h4><span class="look-price">S/ 38</span><p>Cuidado estético y visual de pies con sensación de descanso y limpieza total.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/LimpiezaFacialSpa.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Limpieza Facial Spa</h4><span class="look-price">S/ 60</span><p>Tratamiento de limpieza y cuidado facial para renovar la apariencia de la piel.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/TratamientoCapilarReconstructivo.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Tratamiento Capilar Reconstructivo</h4><span class="look-price">S/ 75</span><p>Cuidado intensivo del cabello para una apariencia suave y revitalizada.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/ManicureSpa.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Manicure Spa</h4><span class="look-price">S/ 30</span><p>Uñas elegantes con acabado brillante y cuidado estético.</p></div>
+        </article>
+        <article class="look-card" data-category="spa">
+          <div class="look-photo" style="background-image:url('img/PestañasyCejas.png')"></div>
+          <div class="look-body"><div class="look-type">Spa / Salón</div><h4>Pestañas y Cejas</h4><span class="look-price">S/ 45</span><p>Definición de mirada con diseño de cejas y pestañas.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contacto">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Contacto</div>
+          <div class="display">Hablemos</div>
+        </div>
+        <p class="lead">Comunícate directamente con Grethel Salón y Spa por WhatsApp para consultas sobre servicios, precios y disponibilidad.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3 style="font-size:30px;letter-spacing:-.03em;text-transform:uppercase;line-height:1">Grethel Salón y Spa</h3>
+          <div class="contact-list">
+            <div class="contact-item"><span>Barbero</span><p>Samuel</p></div>
+            <div class="contact-item"><span>WhatsApp</span><a href="https://wa.me/51935487390?text=Hola%20Grethel%20Sal%C3%B3n%20y%20Spa%2C%20quiero%20informaci%C3%B3n%20sobre%20sus%20servicios." target="_blank" rel="noopener">935 487 390</a></div>
+            <div class="contact-item"><span>Servicios principales</span><p>Barbería, cortes, barba, peinados, color, uñas, tratamientos capilares y spa.</p></div>
+            <div class="contact-item"><span>Ubicación</span><a href="#ubicacion">Ver mapa del local</a></div>
+            <div class="contact-item"><span>Horarios</span><p>Lunes a sábado · 9:00 AM a 10:00 PM</p></div>
+          </div>
+          <a class="btn primary contact-whatsapp" href="https://wa.me/51935487390?text=Hola%20Grethel%20Sal%C3%B3n%20y%20Spa%2C%20quisiera%20realizar%20una%20consulta." target="_blank" rel="noopener">ENVIAR CONSULTA POR WHATSAPP</a>
+        </div>
+
+        <div class="contact-map" id="ubicacion">
+          <h2 class="map-heading">UBICACIÓN</h2>
+          <iframe title="Ubicación de Grethel Salón y Spa en Google Maps" src="https://www.google.com/maps?q=-11.999225,-76.999020&amp;z=17&amp;output=embed" loading="lazy" allowfullscreen referrerpolicy="strict-origin-when-cross-origin"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <strong style="color:var(--paper)">Grethel Salón y Spa</strong><br>
+        Barbería y salón de belleza · Precios referenciales sujetos a confirmación.
+      </div>
+      <div class="footer-actions">
+        <a class="btn" href="#inicio">Volver arriba</a>
+        <a class="btn primary" href="https://wa.me/51935487390?text=Hola%20Grethel%20Sal%C3%B3n%20y%20Spa" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const mainNav = document.getElementById('mainNav');
+    if(menuToggle && mainNav){
+      menuToggle.addEventListener('click', ()=>{
+        mainNav.classList.toggle('is-open');
+        menuToggle.textContent = mainNav.classList.contains('is-open') ? '✕' : '☰';
+      });
+      mainNav.querySelectorAll('a').forEach(link=>{
+        link.addEventListener('click', ()=>{
+          mainNav.classList.remove('is-open');
+          menuToggle.textContent = '☰';
+        });
+      });
+    }
+
+    const filterButtons = document.querySelectorAll('.tab-btn');
+    const lookCards = document.querySelectorAll('.look-card');
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+        const filter = button.dataset.filter;
+        lookCards.forEach(card => {
+          const show = filter === 'all' || card.dataset.category === filter;
+          card.hidden = !show;
+        });
+      });
+    });
+
+
+    // Carrusel automático con controles manuales y pausa al interactuar.
+    (() => {
+      const carousel = document.getElementById('grethelCarousel');
+      if (!carousel) return;
+      const slides = [...carousel.querySelectorAll('.carousel-slide')];
+      const dots = [...carousel.querySelectorAll('.carousel-dots button')];
+      let current = 0;
+      let timer;
+      function show(index) {
+        current = (index + slides.length) % slides.length;
+        slides.forEach((slide, i) => {
+          const active = i === current;
+          slide.classList.toggle('is-active', active);
+          slide.setAttribute('aria-hidden', String(!active));
+          slide.querySelectorAll('a').forEach(a => a.tabIndex = active ? 0 : -1);
+        });
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('is-active', i === current);
+          if (i === current) dot.setAttribute('aria-current', 'true');
+          else dot.removeAttribute('aria-current');
+        });
+      }
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      function stop() { if (timer) clearInterval(timer); timer = undefined; }
+      function play() { stop(); if (!reduceMotion && !document.hidden) timer = setInterval(() => show(current + 1), 5200); }
+      carousel.querySelector('.previous').addEventListener('click', () => { show(current - 1); play(); });
+      carousel.querySelector('.next').addEventListener('click', () => { show(current + 1); play(); });
+      dots.forEach((dot, i) => dot.addEventListener('click', () => { show(i); play(); }));
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', play);
+      carousel.addEventListener('focusin', stop);
+      carousel.addEventListener('focusout', e => { if (!carousel.contains(e.relatedTarget)) play(); });
+      document.addEventListener('visibilitychange', () => document.hidden ? stop() : play());
+      let touchStart = null;
+      carousel.addEventListener('touchstart', e => {touchStart = e.changedTouches[0].clientX; stop();}, {passive:true});
+      carousel.addEventListener('touchend', e => {
+        if(touchStart !== null){const dx=e.changedTouches[0].clientX-touchStart;if(Math.abs(dx)>45)show(current + (dx<0?1:-1));}
+        touchStart=null;play();
+      },{passive:true});
+      show(0); play();
+    })();
+
+  </script>
+</body>
+</html>
