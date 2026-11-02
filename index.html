@@ -203,7 +203,7 @@
       border:1px solid #2a2b31;border-radius:22px;overflow:hidden;background:#121318;transition:.28s;
       display:flex;flex-direction:column;
     }
-    .look-card:hover{transform:translateY(-4px);border-color:#5b5b62}
+    .look-card:hover{transform:none;border-color:#5b5b62}
     .look-card[hidden]{display:none}
     .look-photo{aspect-ratio:4/5;background-size:cover;background-position:center;position:relative}
     .look-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.5))}
@@ -368,7 +368,7 @@
 .look-photo-before{
   position:absolute;inset:0;
   background-size:cover;background-position:center;
-  opacity:0;transition:opacity .65s ease;
+  opacity:0;transition:opacity 1s ease-in-out;
   pointer-events:none;z-index:1;
 }
 .look-photo-before.is-visible{opacity:1}
@@ -388,7 +388,7 @@
 <a href="#inicio">Inicio</a>
 <a href="#nosotros">Nosotros</a>
 <a href="#categorias">Galería</a>
-<a href="#estilos">Cortes</a>
+<a href="#estilos">Estilos</a>
 <a href="#contacto">Contacto</a>
 <a href="#ubicacion">Ubicación</a>
 </nav>
@@ -681,50 +681,60 @@
 
 
 
-    // Galería antes/después: opcional, sin modificar las tarjetas existentes.
-    // Si hay img/FadeClasico.png, agrega img/FadeClasicoAntes.png para activar el efecto.
-    // También puedes definir data-antes="img/mi-antes.png" en la tarjeta.
+    // Antes / Después: solo desvanecimiento, sin saltos de imagen.
+    // La imagen principal se mantiene visible; la de "Antes" aparece en una capa
+    // transparente. Cada desvanecimiento dura 1 segundo y cada foto permanece
+    // completamente visible durante 1 segundo adicional antes del siguiente cambio.
     (() => {
       const cards = document.querySelectorAll('.look-card');
+      const FIRST_CHANGE_DELAY = 1000; // Espera inicial (ms)
+      const FADE_DURATION = 1000;     // Duración de cada desvanecimiento (ms)
+      const VISIBLE_PAUSE = 1000;     // Tiempo mostrando cada foto completa (ms)
       cards.forEach(card => {
         const photo = card.querySelector('.look-photo:not(.look-photo-pending)');
-        if (!photo) return; // Sin fotografía: la tarjeta queda tal cual.
-
-        const background = photo.style.backgroundImage;
-        const match = background.match(/^url\(["']?(.+?)["']?\)$/);
+        if (!photo) return;
+        const match = photo.style.backgroundImage.match(/^url\(["']?(.+?)["']?\)$/);
         if (!match) return;
+
         const mainSrc = match[1];
         const beforeSrc = card.dataset.antes || mainSrc.replace(/(\.[^.\/]+)$/, 'Antes$1');
         const beforeLayer = document.createElement('div');
         beforeLayer.className = 'look-photo-before';
         beforeLayer.setAttribute('aria-hidden', 'true');
+
         let hovered = false;
         let loaded = false;
         let attempted = false;
-        let intervalId = null;
+        let timer = null;
         let showingBefore = false;
 
         function stop() {
           hovered = false;
-          if (intervalId !== null) clearInterval(intervalId);
-          intervalId = null;
+          if (timer !== null) clearTimeout(timer);
+          timer = null;
           showingBefore = false;
+          // Conservar la capa para que al salir siempre se desvanezca (sin corte).
           beforeLayer.classList.remove('is-visible');
         }
-        function start() {
-          if (!hovered || !loaded || intervalId !== null) return;
-          showingBefore = true;
-          beforeLayer.classList.add('is-visible');
-          intervalId = setInterval(() => {
-            if (!hovered) return stop();
-            showingBefore = !showingBefore;
-            beforeLayer.classList.toggle('is-visible', showingBefore);
-          }, 1000);
+
+        function cycle() {
+          if (!hovered || !loaded) return;
+          showingBefore = !showingBefore;
+          beforeLayer.classList.toggle('is-visible', showingBefore);
+          // Un segundo para desvanecer + un segundo con la imagen completa.
+          timer = setTimeout(cycle, FADE_DURATION + VISIBLE_PAUSE);
         }
+
+        function start() {
+          if (!hovered || !loaded || timer !== null) return;
+          // Esperar 1 segundo antes de la primera transición; aplicar desvanecimiento desde el inicio.
+          timer = setTimeout(cycle, FIRST_CHANGE_DELAY);
+        }
+
         card.addEventListener('mouseenter', () => {
           hovered = true;
-          if (loaded) return start();
-          if (attempted) return; // Si no existe la segunda imagen, no altera la principal.
+          if (loaded) { start(); return; }
+          if (attempted) return; // No hay segunda foto: tarjeta estática.
           attempted = true;
           const preload = new Image();
           preload.onload = () => {
